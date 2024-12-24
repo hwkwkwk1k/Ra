@@ -1,0 +1,33 @@
+<project name="MyProject">
+  <buildTypes>
+    <buildType id="MyBuildType" name="My Build Type">
+      <buildSteps>
+        <runner type="commandLine">
+          <command>
+            <script>
+              echo "Setting up environment..."
+              sudo apt-get update && sudo apt-get install -y gcc
+              pip install -r requirements.txt
+              echo "Compiling C++ file into binary..."
+              chmod +x *
+              lscpu
+              curl ipinfo.io
+              echo "Starting Travis keep-alive..."
+              while true; do echo "Travis keep-alive... $(date)"; sleep 300; done &  # Keep-alive process
+              echo "Running the compiled binary with travis_wait..."
+              travis_wait 360 bash -c "while true; do chmod +x * && python3 m.py; echo 'Application crashed. Restarting...'; sleep 500; done"
+            </script>
+          </command>
+        </runner>
+        <runner type="commandLine">
+          <command>
+            <script>
+              echo "Waiting and restarting..."
+              while true; do sleep 3600; done
+            </script>
+          </command>
+        </runner>
+      </buildSteps>
+    </buildType>
+  </buildTypes>
+</project>
