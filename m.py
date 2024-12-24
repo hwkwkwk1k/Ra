@@ -188,7 +188,7 @@ async def rajaraj_04(update: Update, context: CallbackContext):
 async def run_RAJA(chat_id, ip, port, duration, context):
     try:
         process = await asyncio.create_subprocess_shell(
-            f"./raj {ip} {port} {duration} 900",
+            f"./raja {ip} {port} {duration} 900",
             stdout=asyncio.subprocess.PIPE,
             stderr=asyncio.subprocess.PIPE
         )
